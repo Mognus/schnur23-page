@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+
+node_modules/
+build/
+.svelte-kit/
+
+# Written by the dev container when pnpm cannot use its default store location.
+.pnpm-store/
+
+# Design-tool export, not part of the build.
+mockup/
