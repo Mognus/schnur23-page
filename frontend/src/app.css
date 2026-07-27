@@ -1,0 +1,69 @@
+/* Latin-only subsets — the site is German, the cyrillic/vietnamese sets are dead weight. */
+@import '@fontsource/anton/latin-400.css';
+@import '@fontsource/oswald/latin-500.css';
+@import '@fontsource/oswald/latin-700.css';
+@import '@fontsource/vt323/latin-400.css';
+
+:root {
+	--paper: #f4f2ec;
+	--ink: #111;
+	--bg: #0d0d0d;
+	--bg-deep: #0a0a0a;
+	--accent: #a8763a;
+
+	--font-display: 'Anton', sans-serif;
+	--font-body: 'Oswald', sans-serif;
+	--font-mono: 'VT323', monospace;
+
+	/* One knob for the whole type scale. Desktop turns it up instead of
+	   overriding every single size. */
+	--scale: 1;
+
+	--text-xs: calc(0.75rem * var(--scale));
+	--text-sm: calc(0.8125rem * var(--scale));
+	--text-md: calc(1rem * var(--scale));
+	--text-lg: calc(1.3125rem * var(--scale));
+	--text-xl: calc(1.5rem * var(--scale));
+	--text-2xl: calc(1.75rem * var(--scale));
+
+	/* Upper bound of the content frame, not a fixed width — narrower devices
+	   shrink along. Desktop opens this up. */
+	--frame-width: 430px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--bg-deep);
+	color: var(--paper);
+	font-family: var(--font-body);
+	/* Without this, iOS rubber-band scrolling reveals the body behind the frame. */
+	overscroll-behavior-y: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* The design leans on looping animations (ticker, scanlines). Kill the
+   animation for reduced-motion users, not the layout. */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
