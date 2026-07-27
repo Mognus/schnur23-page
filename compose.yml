@@ -12,6 +12,9 @@ services:
     environment:
       # ":80" locally, "schnur23.de" on the server — Caddy then handles ACME.
       SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+      # Redirect-only host. Leave unset unless the www DNS record exists,
+      # otherwise Caddy fails the ACME challenge for it.
+      WWW_ADDRESS: ${WWW_ADDRESS:-www.localhost}
     ports:
       - "80:80"
       - "443:443"

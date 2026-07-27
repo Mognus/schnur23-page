@@ -13,3 +13,10 @@
 
 	reverse_proxy web:3000
 }
+
+# www is a redirect, not a second copy of the site: serving both would break
+# ORIGIN, which adapter-node checks against a single canonical host.
+# WWW_ADDRESS is unset locally, so this block collapses to a dummy host.
+{$WWW_ADDRESS:www.localhost} {
+	redir https://{$SITE_ADDRESS}{uri} permanent
+}
