@@ -11,3 +11,6 @@ build/
 
 # Design-tool export, not part of the build.
 mockup/
+
+# Personal scratchpad, symlinked into the Obsidian vault.
+Todo.md
