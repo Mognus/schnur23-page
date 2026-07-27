@@ -68,7 +68,9 @@
 		display: flex;
 		width: 100%;
 		max-width: var(--frame-width);
-		min-height: 100dvh;
+		/* Fixed, not min-height: the children can only size themselves against
+		   the viewport if the frame actually commits to it. */
+		height: 100dvh;
 		flex-direction: column;
 		border: 2px solid var(--paper);
 		margin: 0 auto;
@@ -81,12 +83,22 @@
 		position: relative;
 		display: flex;
 		flex: 1;
+		/* Flex items default to min-height: auto and then refuse to shrink below
+		   their content. Without this the page overflows instead of fitting. */
+		min-height: 0;
 		flex-direction: column;
 		align-items: center;
-		gap: 20px;
+		/* Gaps and padding breathe with the viewport so short screens spend
+		   their pixels on content, not on whitespace. */
+		gap: clamp(8px, 2dvh, 20px);
 		background: var(--bg);
 		box-shadow: inset 0 0 60px rgb(0 0 0 / 0.4);
-		padding: 32px 24px 28px;
+		padding: clamp(16px, 3dvh, 32px) 24px clamp(14px, 3dvh, 28px);
+		/* Every route inherits the fixed-height frame, so any page whose content
+		   genuinely does not fit scrolls here instead of breaking the layout.
+		   The linktree is tuned to never reach this point. */
+		overflow-y: auto;
+		overscroll-behavior: contain;
 	}
 
 	.scanlines {

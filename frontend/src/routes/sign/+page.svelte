@@ -8,6 +8,7 @@
 
 <style>
 	.stub {
+		flex: none;
 		font-family: var(--font-mono);
 		font-size: var(--text-lg);
 		letter-spacing: 2px;
