@@ -1,0 +1,13 @@
+node_modules
+build
+.svelte-kit
+.pnpm-store
+.git
+.gitignore
+.vscode
+README.md
+Dockerfile
+Dockerfile.dev
+.dockerignore
+.env
+.env.*

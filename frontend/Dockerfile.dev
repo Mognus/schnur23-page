@@ -1,0 +1,18 @@
+# syntax=docker/dockerfile:1
+
+FROM node:26-alpine
+WORKDIR /app
+RUN npm i -g pnpm@11
+
+EXPOSE 5173
+
+# --store-dir keeps pnpm from dropping an 81 MB root-owned .pnpm-store into the
+# host checkout: /app is a bind mount, so pnpm's default store lands on another
+# mount and it falls back to a project-local one. The store has to share a mount
+# with node_modules, and node_modules is a named volume — hence this path.
+# It must be a flag; pnpm 11 ignores npm_config_store_dir.
+#
+# Installing at startup rather than at build time: the source bind mount would
+# shadow anything baked into the image anyway, and a changed lockfile then only
+# needs a restart instead of an image rebuild.
+CMD ["sh", "-c", "pnpm install --store-dir /app/node_modules/.pnpm-store && pnpm dev --host 0.0.0.0 --port 5173"]

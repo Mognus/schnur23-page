@@ -1,0 +1,47 @@
+# Production stack. Run with: docker compose up -d --build
+#
+# Explicit project name: without it Compose derives one from the directory, and
+# both stacks would share it — starting dev would then replace the running
+# prod containers instead of standing up a separate stack.
+name: schnur23
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: ${PROJECT_NAME:-schnur23}-caddy
+    environment:
+      # ":80" locally, "schnur23.de" on the server — Caddy then handles ACME.
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      # Holds the issued certificates. Without this Caddy re-requests them on
+      # every restart and runs into Let's Encrypt rate limits.
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+    restart: always
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME:-schnur23}-web
+    environment:
+      # adapter-node reads PORT; the Caddyfile proxies to web:3000 to match.
+      PORT: 3000
+      # adapter-node rejects form actions whose Origin header does not match.
+      ORIGIN: ${ORIGIN:-http://localhost}
+    # Documentation only — it opens nothing. The port is reachable for caddy
+    # either way, and deliberately not published to the host.
+    expose:
+      - "3000"
+    restart: always
+
+volumes:
+  caddy_data:
+  caddy_config:

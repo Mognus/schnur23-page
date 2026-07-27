@@ -1,0 +1,15 @@
+# Defaults to plain HTTP on :80 for a local prod smoke test. Set SITE_ADDRESS
+# to the domain on the server and Caddy provisions the certificate itself.
+{$SITE_ADDRESS::80} {
+	encode zstd gzip
+
+	# No Cache-Control here: adapter-node already marks /_app/immutable as
+	# immutable itself, and setting it again just duplicates the header.
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	reverse_proxy web:3000
+}
