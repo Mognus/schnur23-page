@@ -7,7 +7,8 @@
 
 	let { children } = $props();
 
-	const tickerText = '★ NEUER DROP BALD ★ FRANKFURT ⟷ ERFURT ★ FOLGT UNS ';
+	const tickerText =
+		'★ NEUER DROP BALD ★ FRANKFURT ⟷ ERFURT ★ FOLGT UNS ★ CAMEL069 NEVER FORGET. ';
 </script>
 
 <svelte:head>
