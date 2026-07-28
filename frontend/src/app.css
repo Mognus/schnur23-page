@@ -3,6 +3,7 @@
 @import '@fontsource/oswald/latin-500.css';
 @import '@fontsource/oswald/latin-700.css';
 @import '@fontsource/vt323/latin-400.css';
+@import '@fontsource/permanent-marker/latin-400.css';
 
 :root {
 	--paper: #f4f2ec;
@@ -14,6 +15,9 @@
 	--font-display: 'Anton', sans-serif;
 	--font-body: 'Oswald', sans-serif;
 	--font-mono: 'VT323', monospace;
+	/* Marker-tag face for the sidebar. Swappable in one line — Sedgwick Ave
+	   Display or Rubik Spray Paint go further, at the cost of legibility. */
+	--font-graffiti: 'Permanent Marker', cursive;
 
 	/* One knob for the whole type scale. Desktop turns it up instead of
 	   overriding every single size. */
@@ -26,9 +30,27 @@
 	--text-xl: calc(1.5rem * var(--scale));
 	--text-2xl: calc(1.75rem * var(--scale));
 
-	/* Upper bound of the content frame, not a fixed width — narrower devices
-	   shrink along. Desktop opens this up. */
-	--frame-width: 430px;
+	/* Upper bound for the reading column, not for the shell. The frame fills
+	   the viewport at every size; only the link stack stops growing here,
+	   because a banknote stretched across a 27" monitor stops reading as one. */
+	--content-width: 560px;
+}
+
+/* The shell is full-bleed everywhere, so width needs no breakpoints — only the
+   type scale steps up, otherwise the layout keeps phone proportions on a big
+   screen. The numbers are repeated in every media query because custom
+   properties cannot be used in the condition itself. */
+
+@media (min-width: 768px) {
+	:root {
+		--scale: 1.1;
+	}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--scale: 1.2;
+	}
 }
 
 *,

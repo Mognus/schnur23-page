@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import Sidebar from '$lib/components/Sidebar.svelte';
 	import TerminalBar from '$lib/components/TerminalBar.svelte';
 	import Ticker from '$lib/components/Ticker.svelte';
 	import BurgerMenu from '$lib/components/BurgerMenu.svelte';
@@ -27,16 +28,22 @@
 	<div class="grain" aria-hidden="true"></div>
 
 	<div class="frame">
-		<TerminalBar />
-		<Ticker text={tickerText.repeat(2)} />
+		<div class="desktop-only"><Sidebar /></div>
 
-		<div class="content">
-			<div class="scanlines" aria-hidden="true"></div>
-			<div class="version" aria-hidden="true">v0.02 BETA</div>
+		<!-- Bar and ticker sit inside this column, not above the frame, so the
+		     ticker scrolls across the content only and leaves the sidebar alone. -->
+		<div class="main">
+			<TerminalBar />
+			<Ticker text={tickerText.repeat(2)} />
 
-			{@render children()}
+			<div class="content">
+				<div class="scanlines" aria-hidden="true"></div>
+				<div class="version" aria-hidden="true">v0.02 BETA</div>
 
-			<BurgerMenu />
+				{@render children()}
+
+				<div class="mobile-only"><BurgerMenu /></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -67,17 +74,51 @@
 		position: relative;
 		z-index: 1;
 		display: flex;
+		/* Full bleed at every size: the shell follows the viewport's aspect
+		   ratio instead of pretending to be a phone on a desktop. Capping
+		   happens further in, on the link stack. */
 		width: 100%;
-		max-width: var(--frame-width);
 		/* Fixed, not min-height: the children can only size themselves against
 		   the viewport if the frame actually commits to it. */
 		height: 100dvh;
-		flex-direction: column;
+		/* A row now: the border has to wrap sidebar and content together. */
+		flex-direction: row;
 		border: 2px solid var(--paper);
-		margin: 0 auto;
-		/* Lets LinkCard and friends react to the frame width instead of the
-		   viewport, so the same component survives the desktop layout. */
+	}
+
+	.main {
+		display: flex;
+		/* Takes all remaining width and is the one that gives when space runs
+		   short — the sidebar has flex: none. */
+		flex: 1;
+		min-width: 0;
+		flex-direction: column;
+		/* Moved down from .frame: components should measure the content column,
+		   not the column plus a sidebar that may or may not be there. */
 		container-type: inline-size;
+	}
+
+	/* The only place that knows about the 1024px breakpoint. Sidebar and
+	   BurgerMenu stay dumb about when they are shown; a prop cannot carry this
+	   because the server has no viewport to evaluate a media query against.
+	   display: contents makes the wrappers vanish from layout, so the children
+	   remain direct flex/positioning children of .frame and .content. */
+	.desktop-only {
+		display: none;
+	}
+
+	.mobile-only {
+		display: contents;
+	}
+
+	@media (min-width: 1024px) {
+		.desktop-only {
+			display: contents;
+		}
+
+		.mobile-only {
+			display: none;
+		}
 	}
 
 	.content {
@@ -89,12 +130,13 @@
 		min-height: 0;
 		flex-direction: column;
 		align-items: center;
-		/* Gaps and padding breathe with the viewport so short screens spend
-		   their pixels on content, not on whitespace. */
 		gap: clamp(8px, 2dvh, 20px);
 		background: var(--bg);
 		box-shadow: inset 0 0 60px rgb(0 0 0 / 0.4);
-		padding: clamp(16px, 3dvh, 32px) 24px clamp(14px, 3dvh, 28px);
+		/* Horizontal padding rides the frame width via container query units, so
+		   a wider frame gets wider margins instead of one long line of content.
+		   cqi resolves against .frame, which declares the container. */
+		padding: clamp(16px, 3dvh, 32px) clamp(24px, 5cqi, 48px) clamp(14px, 3dvh, 28px);
 		/* Every route inherits the fixed-height frame, so any page whose content
 		   genuinely does not fit scrolls here instead of breaking the layout.
 		   The linktree is tuned to never reach this point. */

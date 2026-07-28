@@ -39,6 +39,14 @@
 		object-fit: contain;
 	}
 
+	/* From the sidebar breakpoint on, the sidebar carries the brand. Showing it
+	   twice costs the link stack the vertical space it wants. */
+	@media (min-width: 1024px) {
+		.logo {
+			display: none;
+		}
+	}
+
 	.divider {
 		flex: none;
 		width: 100%;
@@ -63,6 +71,10 @@
 		   overflow-y forces overflow-x to clip, so the box is widened by the
 		   same amount and pulled back with a negative margin. */
 		width: calc(100% + 32px);
+		/* The cap applies to the cards, so it carries the same 32px of slack.
+		   .content centers its children, so the stack stays centred once the
+		   viewport is wider than this. */
+		max-width: calc(var(--content-width) + 32px);
 		margin-inline: -16px;
 		padding: 6px 16px;
 	}
@@ -100,6 +112,11 @@
 		border-radius: 6px;
 		padding: 8px 26px;
 		transform: rotate(-4deg);
+		/* The rotation is not part of the layout box: the tilted corners reach
+		   about 8px past it and the sticker optically sinks into the bottom
+		   padding. Hand that overhang back so it sits centred in the gap.
+		   .links has flex: 1 1 auto, so it gives up the pixels. */
+		margin-bottom: 6px;
 	}
 
 	/* Inner hairline — the double-stroke sticker look from the mockup. */
