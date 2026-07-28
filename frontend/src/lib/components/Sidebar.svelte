@@ -7,7 +7,7 @@
      component's business — the layout owns that breakpoint. -->
 <aside class="sidebar">
 	<a class="brand" href="/" aria-label="schnur23 — Startseite">
-		<img src="/schnur23-logo.png" alt="" width="220" height="110" />
+		<img src="/schnur23-logo.webp" alt="" width="700" height="369" />
 	</a>
 
 	<nav aria-label="Hauptnavigation">

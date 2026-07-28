@@ -8,7 +8,7 @@
 	<meta name="description" content="Alle Links von schnur23 an einem Ort." />
 </svelte:head>
 
-<img class="logo" src="/schnur23-logo.png" alt="schnur23" width="220" height="110" />
+<img class="logo" src="/schnur23-logo.webp" alt="schnur23" width="700" height="369" />
 
 <div class="divider"></div>
 
@@ -19,7 +19,7 @@
 </nav>
 
 <div class="sticker-row">
-	<img src="/schnur23-avatar.png" alt="" width="170" height="170" />
+	<img src="/schnur23-avatar.webp" alt="" width="117" height="400" />
 	<div class="rule"></div>
 </div>
 
@@ -93,7 +93,6 @@
 	.sticker-row img {
 		height: 100%;
 		width: auto;
-		max-width: 170px;
 		flex-shrink: 0;
 		object-fit: contain;
 	}
