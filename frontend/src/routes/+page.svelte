@@ -14,7 +14,13 @@
 
 <nav class="links" aria-label="Links">
 	{#each links as link, i (link.label)}
-		<LinkCard label={link.label} href={link.href} note={banknoteFor(i)} index={i} />
+		<LinkCard
+			label={link.label}
+			href={link.href}
+			icon={link.icon}
+			note={banknoteFor(i)}
+			index={i}
+		/>
 	{/each}
 </nav>
 

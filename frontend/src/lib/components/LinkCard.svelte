@@ -1,12 +1,21 @@
 <script lang="ts">
+	import type { Component } from 'svelte';
 	import type { Banknote } from '$lib/links';
 
+	// Capitalised on destructure so it can be rendered as <Icon /> below.
 	let {
 		label,
 		href,
+		icon: Icon,
 		note,
 		index
-	}: { label: string; href: string | null; note: Banknote; index: number } = $props();
+	}: {
+		label: string;
+		href: string | null;
+		icon: Component;
+		note: Banknote;
+		index: number;
+	} = $props();
 
 	// Later cards overlap earlier ones, so the stack reads top to bottom.
 	const stackStyle = $derived(
@@ -26,7 +35,7 @@
 	style={stackStyle}
 >
 	<span class="denom" aria-hidden="true">{note.denom}</span>
-	<span class="icon" aria-hidden="true">{note.icon}</span>
+	<span class="icon" aria-hidden="true"><Icon /></span>
 
 	<span class="body">
 		<span class="brand">SCHNUR23</span>
@@ -75,8 +84,11 @@
 		opacity: 0.65;
 	}
 
+	/* Both icon sets render at 1em, so font-size is the size knob and
+	   currentColor picks up the note's ink. */
 	.icon {
-		font-size: var(--text-lg);
+		display: flex;
+		font-size: var(--text-xl);
 		line-height: 1;
 		color: var(--note-ink);
 	}
