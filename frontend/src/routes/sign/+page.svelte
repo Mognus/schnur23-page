@@ -18,8 +18,8 @@
 
 	<p class="note">
 		Mit viel Leidensdruck und Frust geschmiedet, unter den zersetzend zermürbenden sozialen
-		Umständen des Thüringer Waldes und der hässlichen Visage seiner vom Kristall in den Irr- und
-		Wahnsinn getriebenen asozialen „Bevölkerung". (Wenn man „Bevölkerung" in diesem Kontext vor Gott
+		Umständen des Thüringer Waldes und der Visage seiner vom Kristall in den Irr- und
+		Wahnsinn getriebenen „Bevölkerung". (Wenn man „Bevölkerung" in diesem Kontext vor Gott
 		überhaupt in den Mund nehmen kann.)
 	</p>
 </section>
