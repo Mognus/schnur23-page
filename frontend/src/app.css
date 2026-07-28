@@ -4,6 +4,8 @@
 @import '@fontsource/oswald/latin-700.css';
 @import '@fontsource/vt323/latin-400.css';
 @import '@fontsource/permanent-marker/latin-400.css';
+/* Only used by the Freier Freier brand on /sign, hence the single heavy cut. */
+@import '@fontsource/syne/latin-800.css';
 
 :root {
 	--paper: #f4f2ec;
@@ -18,6 +20,9 @@
 	/* Marker-tag face for the sidebar. Swappable in one line — Sedgwick Ave
 	   Display or Rubik Spray Paint go further, at the cost of legibility. */
 	--font-graffiti: 'Permanent Marker', cursive;
+	/* The Freier Freier brand face, kept as its own token so the nod stays
+	   recognisable and never drifts with the schnur23 type scale. */
+	--font-brand: 'Syne', sans-serif;
 
 	/* One knob for the whole type scale. Desktop turns it up instead of
 	   overriding every single size. */

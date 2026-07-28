@@ -17,6 +17,9 @@ importers:
       '@fontsource/permanent-marker':
         specifier: ^5.3.0
         version: 5.3.0
+      '@fontsource/syne':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource/vt323':
         specifier: ^5.3.0
         version: 5.3.0
@@ -61,6 +64,9 @@ packages:
 
   '@fontsource/permanent-marker@5.3.0':
     resolution: {integrity: sha512-ZO/NtYW4SCc/iY8N3dmjWyDITcXJ/vhWZFgnwRcvzwCKKnScMrM/a2/6VHlsjCVuIgmPzNrCFbedEYhv+/jJBg==}
+
+  '@fontsource/syne@5.3.0':
+    resolution: {integrity: sha512-kRWNVsrdYw+08I4EM1SYPe2JovdTzUI0kMVALVRsKmjRdkrVoun1qddSlDAglz5J9LbgUpJSkWmw6BYnmKdGuw==}
 
   '@fontsource/vt323@5.3.0':
     resolution: {integrity: sha512-3w33Rg/0+R1587HQfz4t7Q7e0GGeCqr3wmzIwqdGInUnrGEwMA5eX39GP4Z9wpTQnwfhVOhYuxuRwRUeIcicbw==}
@@ -778,6 +784,8 @@ snapshots:
   '@fontsource/oswald@5.3.0': {}
 
   '@fontsource/permanent-marker@5.3.0': {}
+
+  '@fontsource/syne@5.3.0': {}
 
   '@fontsource/vt323@5.3.0': {}
 
