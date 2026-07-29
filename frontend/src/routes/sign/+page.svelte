@@ -17,10 +17,8 @@
 	<Brand href="https://freierfreier23.de" spread={5} duration={15} />
 
 	<p class="note">
-		Mit viel Leidensdruck und Frust geschmiedet, unter den zersetzend zermürbenden sozialen
-		Umständen des Thüringer Waldes und der Visage seiner vom Kristall in den Irr- und
-		Wahnsinn getriebenen „Bevölkerung". (Wenn man „Bevölkerung" in diesem Kontext vor Gott
-		überhaupt in den Mund nehmen kann.)
+		Mit viel Leidensdruck und Frust geschmiedet, unter den zermürbenden sozialen
+		Umständen des Thüringer Waldes.
 	</p>
 </section>
 
