@@ -1,14 +1,14 @@
 # schnur23-page
 
-Linktree für [schnur23.de](https://schnur23.de). **SvelteKit** (`adapter-node`,
-SSR) hinter **Caddy**, das TLS automatisch übernimmt. Angelegt mit Raum für eine
-Go-API und Postgres — siehe [Plan.md](Plan.md).
+Linktree for [schnur23.de](https://schnur23.de). **SvelteKit** (`adapter-node`,
+SSR) behind **Caddy**, which handles TLS automatically. Laid out with room to
+grow into a Go API plus Postgres — see [Plan.md](Plan.md).
 
 ```
 Browser ──/──► Caddy ──► web:3000 (SvelteKit SSR)
 ```
 
-Nur Caddy bindet Ports, `web` bleibt im internen Docker-Netz.
+Only Caddy binds ports; `web` stays on the internal Docker network.
 
 ## Dev
 
@@ -16,40 +16,41 @@ Nur Caddy bindet Ports, `web` bleibt im internen Docker-Netz.
 cp .env.example .env
 docker compose -f compose.dev.yml up
 
-#   http://localhost:5174   (DEV_PORT, Vite direkt — kein Caddy davor)
+#   http://localhost:5174   (DEV_PORT — Vite directly, no Caddy in front)
 ```
 
-Der Source-Ordner ist gemountet, HMR läuft nativ.
+The source folder is bind-mounted, so HMR works natively.
 
 ## Prod
 
-Deploy passiert automatisch: **Push auf `main`** → ein self-hosted Runner baut
-und startet den Stack neu (`.github/workflows/deploy.yml`).
+Deploy is automatic: **push to `main`** → a self-hosted runner rebuilds and
+restarts the stack (`.github/workflows/deploy.yml`).
 
 ```bash
 git push origin main
 ```
 
-Lokal testen lässt sich der Prod-Stack mit:
+To smoke-test the production stack locally:
 
 ```bash
 docker compose up -d --build   # http://localhost
 ```
 
-Secrets liegen auf dem Server in `~/schnur23.env`, nie im Repo. Nötig sind dort:
+Secrets live on the server in `~/schnur23.env`, never in the repo. Required
+there:
 
 ```env
 SITE_ADDRESS=schnur23.de
 ORIGIN=https://schnur23.de
 ```
 
-`SITE_ADDRESS` ohne Schema — mit `https://` startet Caddy die ACME-Challenge
-nicht. `ORIGIN` muss exakt dem entsprechen, was der Browser sieht, sonst weist
-`adapter-node` Form-Actions ab. `WWW_ADDRESS` erst setzen, wenn der
-www-DNS-Eintrag existiert.
+`SITE_ADDRESS` takes no scheme — with `https://` Caddy never starts the ACME
+challenge. `ORIGIN` must match exactly what the browser sees, otherwise
+`adapter-node` rejects form actions. Set `WWW_ADDRESS` only once the www DNS
+record exists.
 
-## Inhalt pflegen
+## Editing content
 
-Links und die Geldschein-Optik stehen in
-[`frontend/src/lib/links.ts`](frontend/src/lib/links.ts). `href: null` markiert
-einen angekündigten Link, der als `// SOON` gerendert wird.
+Links and the banknote styling live in
+[`frontend/src/lib/links.ts`](frontend/src/lib/links.ts). `href: null` marks an
+announced link that renders as `// SOON`.
