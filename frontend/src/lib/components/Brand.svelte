@@ -89,7 +89,9 @@
 		/* Keeps the \n in the title as a line break. */
 		white-space: pre-line;
 		letter-spacing: -0.02em;
-		text-align: center;
+		/* Left, not centred: the lines stack flush like a wordmark. .core still
+		   centres the block itself, so only the lines align to each other. */
+		text-align: left;
 		text-transform: uppercase;
 		color: var(--paper);
 	}
