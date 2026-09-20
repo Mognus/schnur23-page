@@ -1,7 +1,7 @@
 <script lang="ts">
 	let {
 		// \n is a real line break here — .title uses white-space: pre-line.
-		title = 'FREIER\nFREIER23',
+		title = 'LUX\nXER 23',
 		href = undefined,
 		waves = 3,
 		duration = 9,
@@ -62,7 +62,7 @@
 	.ring {
 		position: absolute;
 		/* Starts slightly outside the glyphs instead of cutting through them. */
-		inset: -14px;
+		inset: -5px;
 		border: 1px solid var(--paper);
 		opacity: 0.4;
 		pointer-events: none;

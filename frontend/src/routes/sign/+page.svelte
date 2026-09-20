@@ -4,7 +4,7 @@
 
 <svelte:head>
 	<title>sign — schnur23</title>
-	<meta name="description" content="Created by Freier Freier." />
+	<meta name="description" content="Created by LuXXer." />
 </svelte:head>
 
 <!-- Direct flex child of .content, so it takes the leftover height itself and
@@ -14,7 +14,7 @@
 
 	<!-- Rings travel further than the component default. duration goes up with
 	     spread so the extra distance does not turn into extra speed. -->
-	<Brand href="https://freierfreier23.de" spread={5} duration={15} />
+	<Brand href="https://luxxer23.de" spread={5} duration={15} />
 
 	<p class="note">
 		Mit viel Leidensdruck und Frust geschmiedet, unter den zermürbenden sozialen
