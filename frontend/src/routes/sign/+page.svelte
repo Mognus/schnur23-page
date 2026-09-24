@@ -16,10 +16,13 @@
 	     spread so the extra distance does not turn into extra speed. -->
 	<Brand href="https://luxxer23.de" spread={5} duration={15} />
 
-	<p class="note">
-		Mit viel Leidensdruck und Frust geschmiedet, unter den zermürbenden sozialen
-		Umständen des Thüringer Waldes.
-	</p>
+	<figure class="note">
+		<blockquote>
+			„Da sah der Pāṇḍava die ganze Welt, vielfach geteilt und doch an einem Ort
+			vereint, im Leib des Gottes der Götter.“
+		</blockquote>
+		<figcaption>— Bhagavad Gita 11,13</figcaption>
+	</figure>
 </section>
 
 <style>
@@ -64,5 +67,16 @@
 		text-align: center;
 		text-wrap: balance;
 		color: rgb(244 242 236 / 0.45);
+	}
+
+	.note blockquote {
+		margin: 0;
+	}
+
+	.note figcaption {
+		margin-top: 8px;
+		font-family: var(--font-mono);
+		letter-spacing: 2px;
+		color: rgb(244 242 236 / 0.35);
 	}
 </style>
