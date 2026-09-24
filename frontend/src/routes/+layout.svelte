@@ -38,7 +38,6 @@
 
 			<div class="content">
 				<div class="scanlines" aria-hidden="true"></div>
-				<div class="version" aria-hidden="true">v0.02 BETA</div>
 
 				{@render children()}
 
@@ -164,18 +163,5 @@
 		to {
 			background-position: 0 8px;
 		}
-	}
-
-	.version {
-		position: absolute;
-		top: 12px;
-		right: 16px;
-		border: 1px solid rgb(244 242 236 / 0.3);
-		padding: 1px 6px;
-		font-family: var(--font-mono);
-		font-size: var(--text-sm);
-		letter-spacing: 2px;
-		color: rgb(244 242 236 / 0.4);
-		transform: rotate(3deg);
 	}
 </style>
