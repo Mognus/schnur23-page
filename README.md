@@ -8,13 +8,13 @@ grow into a Go API plus Postgres — see [Plan.md](Plan.md).
 Browser ──/──► Caddy ──► web:3000 (SvelteKit SSR)
 ```
 
-Only Caddy binds ports; `web` stays on the internal Docker network.
+Only Caddy binds ports; `web` stays on the internal Podman network.
 
 ## Dev
 
 ```bash
 cp .env.example .env
-docker compose -f compose.dev.yml up
+podman compose -f compose.dev.yml up
 
 #   http://localhost:5174   (DEV_PORT — Vite directly, no Caddy in front)
 ```
@@ -33,7 +33,7 @@ git push origin main
 To smoke-test the production stack locally:
 
 ```bash
-docker compose up -d --build   # http://localhost
+podman compose up -d --build   # http://localhost
 ```
 
 Secrets live on the server in `~/schnur23.env`, never in the repo. Required
